@@ -505,6 +505,14 @@
                                 privateMethods.closeDialog($dialog, value);
                             };
 
+			    if (options.style && typeof options.style === 'object') {
+				for (var property in options.style) {
+				    if (options.style.hasOwnProperty(property)) {
+					$dialog[0].style[property] = options.style[property];
+				    }
+				}
+			    }
+
                             $timeout(function () {
                                 var $activeDialogs = document.querySelectorAll('.ngdialog');
                                 privateMethods.deactivateAll($activeDialogs);
