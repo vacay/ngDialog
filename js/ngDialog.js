@@ -432,14 +432,16 @@
 
                             $templateCache.put(options.template || options.templateUrl, template);
 
+			    template = options.overlay ?
+                                '<div class="ngdialog-overlay"></div><div class="ngdialog-content" role="document">' + template + '</div>' :
+                                '<div class="ngdialog-content" role="document">' + template + '</div>';
+
                             if (options.showClose) {
                                 template += '<div class="ngdialog-close"></div>';
                             }
 
                             $dialog = $el('<div id="ngdialog' + localID + '" class="ngdialog"></div>');
-                            $dialog.html((options.overlay ?
-                                '<div class="ngdialog-overlay"></div><div class="ngdialog-content" role="document">' + template + '</div>' :
-                                '<div class="ngdialog-content" role="document">' + template + '</div>'));
+                            $dialog.html(template);
 
                             $dialog.data('$ngDialogOptions', options);
 
